@@ -24,6 +24,17 @@ const {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Base URL used when returning shareable links.
+// Netlify sets URL/DEPLOY_PRIME_URL automatically.
+const SITE_URL = (
+  process.env.PUBLIC_BASE_URL ||
+  process.env.URL ||
+  process.env.DEPLOY_PRIME_URL ||
+  process.env.DEPLOY_URL ||
+  (process.env.NODE_ENV === "production" ? "https://onlytestingonly.netlify.app" : `${SITE_URL}`)
+).replace(/\/$/, "");
+
+
 app.use(express.json({ limit: "1mb" }));
 
 async function basicAuth(req, res, next) {
@@ -142,8 +153,7 @@ app.post("/api/admin/create-session", basicAuth, async (req, res) => {
     return res.json({
       token: created.token,
       sessionId: created.sessionId,
-      url: `/exam.html?token=${created.token}&sid=${created.sessionId}`
-    });
+      url: `${SITE_URL}/exam.html?token=${created.token}&sid=${created.sessionId}`});
   } catch (err) {
     console.error("ADMIN GENERATE ERROR:", err);
     return res.status(500).json({ error: String(err?.message || err) });
@@ -229,6 +239,6 @@ app.post("/api/session/:token/submit", examGate, async (req, res) => {
   await initDb();
   app.listen(PORT, () => {
     console.log(`DB URL: ${hasPg ? "POSTGRES" : "SQLITE"}`);
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on ${SITE_URL}`);
   });
 })();

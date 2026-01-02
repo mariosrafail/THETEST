@@ -2,16 +2,12 @@
   "name": "english-exam-demo",
   "version": "1.0.0",
   "private": true,
-  "main": "server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "netlify dev"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "sqlite3": "^5.1.7",
     "pg": "^8.13.0",
-    "dotenv": "^16.4.5"
+    "sqlite3": "^5.1.7"
   }
 }

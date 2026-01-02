@@ -13,8 +13,8 @@ This is a minimal, working demo of:
    - npm install
    - npm start
 3) Open:
-   - Exam entry: https://onlytestingonly.netlify.app/
-   - Admin panel: https://onlytestingonly.netlify.app/admin.html
+   - Exam entry: http://localhost:3000/
+   - Admin panel: http://localhost:3000/admin.html
 
 Admin login (demo):
 - user: admin

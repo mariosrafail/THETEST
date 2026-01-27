@@ -1,123 +1,1017 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Course UI Demo</title>
-  <link rel="stylesheet" href="assets/css/base.css" />
-  <link rel="stylesheet" href="assets/css/layout.css" />
-  <link rel="stylesheet" href="assets/css/components.css" />
-  <link rel="stylesheet" href="assets/css/animations.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Module 2 | Course</title>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar" aria-label="Course navigation">
-      <div class="sidebar-top">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-text">
-            <div class="brand-title">Course Demo</div>
-            <div class="brand-subtitle">10 lessons, local flow</div>
-          </div>
-        </div>
+<div class="layout">
+<aside aria-label="Course navigation" class="sidebar">
+<div class="side-brand">
+<div aria-hidden="true" class="side-mark"></div>
+<div class="side-text">
+<div class="side-title">English in Tourism</div>
+<div class="side-subtitle">Module 2</div>
+</div>
+</div>
+<nav aria-label="Tabs" class="tabs">
+<button aria-controls="tabInfo" aria-selected="true" class="tab-btn is-active" data-tab="info" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">Module Focus</span>
+</button>
+<div aria-label="Second hour" class="tab-divider" role="separator">
+<span class="tab-divider-text">First Hour</span>
+</div>
+<button aria-controls="tabExercise" aria-selected="false" class="tab-btn" data-tab="exercise" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">I. Useful Language</span>
+</button>
+<button aria-controls="tabKeywords" aria-selected="false" class="tab-btn" data-tab="keywords" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">II. Key Words</span>
+</button>
+<button aria-controls="tabListening" aria-selected="false" class="tab-btn" data-tab="listening" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">III. Listening</span>
+</button>
+<button aria-controls="tabRevision" aria-selected="false" class="tab-btn" data-tab="revision" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">IV. Language Revision</span>
+</button><button aria-controls="tabPractice" aria-selected="false" class="tab-btn" data-tab="practice" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">V. Language Practice</span>
+</button>
+<button aria-controls="tabReading" aria-selected="false" class="tab-btn" data-tab="reading" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">VI. Reading</span>
+</button>
+<button aria-controls="tabSpeaking" aria-selected="false" class="tab-btn" data-tab="speaking" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">VII. Speaking</span>
+</button>
+<div aria-label="Second hour" class="tab-divider" role="separator">
+<span class="tab-divider-text">Second Hour</span>
+</div>
+<button aria-controls="tabHour2Exercise" aria-selected="false" class="tab-btn" data-tab="h2_exercise" type="button">
+<span aria-hidden="true" class="tab-dot"></span>
+<span class="tab-label">I. Useful Language</span>
+	</button><button aria-controls="tabHour2Keywords" aria-selected="false" class="tab-btn" data-tab="h2_keywords" type="button"><span aria-hidden="true" class="tab-dot"></span><span class="tab-label">II. Key Words</span></button>
+	<button aria-controls="tabHour2Listening" aria-selected="false" class="tab-btn" data-tab="h2_listening" type="button">
+	<span aria-hidden="true" class="tab-dot"></span>
+	<span class="tab-label">III. Listening</span>
+	</button>
+<button aria-controls="tabHour2Reading" aria-selected="false" class="tab-btn" data-tab="h2_reading" type="button">
+	<span aria-hidden="true" class="tab-dot"></span>
+	<span class="tab-label">IV. Reading</span>
+</button>
 
-        <div class="sidebar-meta">
-          <div class="meta-card">
-            <div class="meta-label">Progress</div>
-            <div class="meta-value"><span id="metaDone">0</span>/<span id="metaTotal">10</span> lessons</div>
-            <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
-              <div class="meter-fill" id="meterFill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+<button aria-controls="tabHour2Writing" aria-selected="false" class="tab-btn" data-tab="h2_writing" type="button">
+	<span aria-hidden="true" class="tab-dot"></span>
+	<span class="tab-label">V. Writing</span>
+</button>
 
-      <nav class="tabs" id="lessonTabs" aria-label="Lessons">
-        <!-- tabs injected -->
-      </nav>
-
-      <div class="sidebar-bottom">
-        <button class="btn btn-square btn-ghost" id="resetBtn" type="button">Reset demo</button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div class="topbar-left">
-          <div class="crumb">
-            <span class="crumb-muted">Module</span>
-            <span class="crumb-dot" aria-hidden="true"></span>
-            <span class="crumb-strong" id="crumbLesson">Lesson 1</span>
-          </div>
-          <div class="title" id="lessonTitle">Lesson title</div>
-          <div class="subtitle" id="lessonSubtitle">Short description goes here.</div>
-        </div>
-
-        <div class="topbar-right">
-          <div class="chip" id="statusChip">In progress</div>
-          <button class="btn btn-square" id="completeBtn" type="button">Complete lesson</button>
-        </div>
-      </header>
-
-      <section class="content-grid">
-        <section class="card lesson-card">
-          <div class="card-head">
-            <div class="card-title">Content</div>
-            <div class="card-actions">
-              <button class="btn btn-square btn-soft" id="prevBtn" type="button">Prev</button>
-              <button class="btn btn-square btn-soft" id="nextBtn" type="button">Next</button>
-            </div>
-          </div>
-
-          <div class="card-body">
-            <div class="lesson-body" id="lessonBody">
-              <!-- lesson content injected -->
-            </div>
-          </div>
-        </section>
-
-        <aside class="card tutor-card">
-          <div class="card-head">
-            <div class="card-title">Tutor</div>
-            <div class="card-actions">
-              <button class="btn btn-square btn-ghost" id="hintBtn" type="button">Hint</button>
-            </div>
-          </div>
-
-          <div class="card-body tutor-body">
-            <div class="robot-area" aria-label="Robot placeholder">
-              <div class="robot-placeholder" id="robotPlaceholder">
-                <div class="robot-ring" aria-hidden="true"></div>
-                <div class="robot-core" aria-hidden="true"></div>
-                <div class="robot-label">ROBOT PLACEHOLDER</div>
-                <div class="robot-note">Replace this with your robot</div>
+<button aria-controls="tabHour2Recall" aria-selected="false" class="tab-btn" data-tab="h2_recall" type="button">
+	<span aria-hidden="true" class="tab-dot"></span>
+	<span class="tab-label">VI. Learning Recal</span>
+</button>
+</nav>
+<div class="side-footer">
+<button aria-label="Credits" class="icon-btn" id="creditsBtn" type="button">i</button>
+</div>
+</aside>
+<main class="content" role="main">
+<!-- TAB 1 -->
+<section class="tab-panel" data-panel="info" id="tabInfo">
+<div class="module-card">
+<div class="module-top">
+<div class="module-focus-title">Module Focus:</div>
+<div class="module-focus-sub">Bookings, inquiries, introductions, requests, making reservations</div>
+</div>
+<div aria-label="Module focus details" class="focus-box" role="region">
+<div class="focus-grid">
+<div class="focus-block">
+<h2 class="focus-h">Aims:</h2>
+<ul class="focus-ul">
+<li>Ability to initiate and complete reservations.</li>
+<li>Clear communication in taking and giving guest information (dates, numbers, room / type preferences).</li>
+<li>Polite, professional introductions and handling client inquiries.</li>
+</ul>
+</div>
+<div class="focus-block">
+<h2 class="focus-h">Language Skills Focus:</h2>
+<p class="focus-p"><strong>Speaking:</strong> simple Q&amp;A; describe a place briefly (e.g., hotel lobby, restaurant, museum, etc. in Crete).</p>
+<p class="focus-p"><strong>Listening:</strong> dialogues with requests and confirmations in hospitality settings.</p>
+<p class="focus-p"><strong>Reading:</strong> two short texts with Multiple Choice questions (main idea/detail).</p>
+<p class="focus-p"><strong>Writing:</strong> sentence completion with verbs/articles; draft 50-word email skeleton (e.g., inquiry about a family room).</p>
+<p class="focus-p"><strong>Language Revision:</strong> Present Simple (Be + Other Verbs for Habits)</p>
+<p class="focus-p"><strong>Language Functions:</strong> making requests, handling inquiries &amp; bookings, asking clarifying questions, confirming reservations.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TAB 2 -->
+<section class="tab-panel" data-panel="exercise" hidden="" id="tabExercise">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon">
+<img alt="" src="img/bubbles.png"/>
+</div>
+<h1 class="unit-title">I. Useful Language</h1>
+</div>
+</div>
+<div class="exercise-shell">
+<div class="exercise-left">
+<aside aria-label="Instructions" class="exercise-right">
+<div class="sticky-card">
+<div class="card-title">INSTRUCTIONS:</div>
+<p class="card-p">Listen to Aris’s questions and complete the sentence appropriately.</p>
+<!-- <ul class="card-ul"> -->
+<!-- <li>Answer all questions, then press <strong>Submit</strong>.</li> -->
+<!-- <li>If anything is wrong, you will see which question needs a second try.</li> -->
+<!-- <li>If everything is correct, you will get a success message.</li> -->
+<!-- </ul> -->
+</div>
+</aside>
+<br>
+<div class="robot-card">
+<div aria-hidden="true" class="robot-wrap">
+<img alt="" class="robot" src="img/robot.svg"/>
+</div>
+<div class="robot-text">
+<div class="robot-name">Robot Aris</div>
+<div class="robot-line">“I’d like to ask...” “I’d like to ask about...” “I’d like a room...”</div>
+</div>
+</div>
+<div aria-label="Audio player" class="audio-card" role="region">
+<audio id="dialogueAudio" preload="metadata">
+<source src="sound/mod2_useful_language.mp3" type="audio/mpeg"/>
+</audio>
+<div class="audio-controls">
+<button class="btn primary" id="playBtn" type="button">Play</button>
+<button class="btn" id="pauseBtn" type="button">Pause</button>
+<button class="btn" id="restartBtn" type="button">Restart</button>
+<div aria-live="polite" class="audio-status" id="audioStatus">Ready</div>
+</div>
+<div class="progress">
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+</div>
+<div class="note">
+                Tip: you can replay the audio anytime before submitting.
               </div>
-            </div>
+</div>
+<form aria-label="Multiple choice questions" class="quiz" id="quizForm">
+<div class="q" data-q="q1">
+<div class="q-head">
+<div class="q-num">1</div>
+<div class="q-text"><span class="who">Robot:</span> I’d like to ask about...</div>
+</div>
+<div aria-label="Question 1 options" class="opts" role="radiogroup">
+<label class="opt"><input name="q1" type="radio" value="a"/> flights to Athens.</label>
+<label class="opt"><input name="q1" type="radio" value="b"/> the towels are blue.</label>
+<label class="opt"><input name="q1" type="radio" value="c"/> the weather is singing.</label>
+</div>
+</div>
+<div class="q" data-q="q2">
+<div class="q-head">
+<div class="q-num">2</div>
+<div class="q-text"><span class="who">Robot:</span> I’d like to ask...</div>
+</div>
+<div aria-label="Question 2 options" class="opts" role="radiogroup">
+<label class="opt"><input name="q2" type="radio" value="a"/> what time it is.</label>
+<label class="opt"><input name="q2" type="radio" value="b"/> if the table is a robot.</label>
+<label class="opt"><input name="q2" type="radio" value="c"/> that your shoes are loud.</label>
+</div>
+</div>
+<div class="q" data-q="q3">
+<div class="q-head">
+<div class="q-num">3</div>
+<div class="q-text"><span class="who">Robot:</span> I’d like...</div>
+</div>
+<div aria-label="Question 3 options" class="opts" role="radiogroup">
+<label class="opt"><input name="q3" type="radio" value="a"/> dessert, please.</label>
+<label class="opt"><input name="q3" type="radio" value="b"/> a window that talks.</label>
+<label class="opt"><input name="q3" type="radio" value="c"/> a banana passport.</label>
+</div>
+</div>
+<div class="actions">
+<button class="btn primary" type="submit">Submit</button>
+<button class="btn ghost" id="resetBtn" type="button">Try again</button>
+</div>
+<div aria-live="polite" class="feedback" id="feedback"></div>
+</form>
+</div>
 
-            <div class="bubble-area" aria-label="Bubble placeholder">
-              <div class="bubble-placeholder" id="bubblePlaceholder">
-                <div class="bubble-title">BUBBLE PLACEHOLDER</div>
-                <div class="bubble-text" id="bubbleText">Text will appear here.</div>
-              </div>
-            </div>
+</div>
+</section>
+<!-- TAB 3 -->
+<section class="tab-panel" data-panel="keywords" hidden="" id="tabKeywords">
+<div class="kw-wrap">
+<div class="kw-card" data-theme="blue">
+<div class="kw-head">
+<div aria-hidden="true" class="kw-icon">
+<img alt="" src="img/icon-key.png"/>
+</div>
+<div class="kw-title">II. Key Words</div>
+</div>
+<div class="kw-body">
+<div aria-label="Key words instructions" class="kw-instructions" role="region">
+<div class="kw-instr-title">INSTRUCTIONS:</div>
+<div class="kw-instr-text">
+The key words and meanings for the Listening Activity that follows are listed below. Check them carefully before doing the activity.
+</div>
+</div>
+<div aria-label="Key words list" class="kw-list" role="list">
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>rates</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">money charged for something</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>availability</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">being free/obtainable</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>price</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">cost</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>additional charge</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">extra fee</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>proceed</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">go ahead</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>booking (hotel, airplane/train)</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">advance arrangement</div>
+</div>
+<div class="kw-row" role="listitem">
+<div class="kw-word"><em>reservation</em></div>
+<button aria-expanded="false" class="kw-reveal" type="button">Reveal</button>
+<div class="kw-meaning" hidden="">saved in advance</div>
+</div>
+</div>
+<div class="kw-actions">
+<button class="btn ghost" id="revealAllBtn" type="button">Reveal all</button>
+<button class="btn" id="hideAllBtn" type="button">Hide all</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="tab-panel" data-panel="listening" hidden="" id="tabListening">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon unit-icon--purple">
+<img alt="" src="img/icon-headphones.svg"/>
+</div>
+<h1 class="unit-title">III. Listening</h1>
+</div>
+</div>
+<div class="exercise-shell">
+<div class="exercise-left">
+<aside aria-label="Instructions" class="exercise-right">
+<div class="sticky-card sticky-card--purple">
+<div class="card-title">INSTRUCTIONS</div>
 
-            <div class="qa">
-              <div class="qa-title">Quick question</div>
-              <div class="qa-text" id="questionText">Pick an answer to get feedback.</div>
+<ul class="card-ul">
+<li>Listen to a dialogue between a receptionist and a hotel guest.</li>
+<li>First, look at Questions 1 to 3. Then, play the recording ONCE.</li>
+<li>Play the recording again, and answer the Questions.</li>
+<li>Then, listen to the dialogue a third time, and check your answers.</li>
+<li>Now, click the button below for the correct answers.</li>
+</ul>
+</div>
+</aside>
+<br>
+<div class="card audio-card li-audio">
+<div class="audio-wrap">
+<div aria-hidden="true" class="audio-badge">AUDIO</div>
+<div>
+<div class="audio-title">Listening</div>
+<div class="audio-subtitle">Play the recording and answer the questions.</div>
+<div class="btn-row">
+<button class="btn" id="liPlayBtn" type="button">Play</button>
+<button class="btn" id="liPauseBtn" type="button">Pause</button>
+<button class="btn" id="liRestartBtn" type="button">Restart</button>
+<span aria-live="polite" class="status" id="liAudioStatus" role="status">Ready</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="liProgressBar" style="width:0%"></div>
+</div>
+<audio id="listeningAudio" preload="auto">
+<source src="sound/mod2_listening.mp3" type="audio/mpeg"/>
+</audio>
+</div>
+</div>
+</div>
+<div class="questions-head">QUESTIONS:</div>
+<form aria-label="Listening multiple choice questions" class="quiz li-quiz" id="listeningForm">
+<div class="q" data-q="lq1">
+<div class="q-head">
+<div class="q-num">1</div>
+<div class="q-text">What type of room does the hotel guest need?</div>
+</div>
+<label class="opt"><input name="lq1" type="radio" value="a"/> A single.</label>
+<label class="opt"><input name="lq1" type="radio" value="b"/> A double.</label>
+<label class="opt"><input name="lq1" type="radio" value="c"/> A triple.</label>
+<!-- <div class="q-hint">Choose one answer.</div> -->
+</div>
+<div class="q" data-q="lq2">
+<div class="q-head">
+<div class="q-num">2</div>
+<div class="q-text">What is the price of the double room?</div>
+</div>
+<label class="opt"><input name="lq2" type="radio" value="a"/> 120 euros.</label>
+<label class="opt"><input name="lq2" type="radio" value="b"/> 100 euros.</label>
+<label class="opt"><input name="lq2" type="radio" value="c"/> 135 euros.</label>
+<!-- <div class="q-hint">Choose one answer.</div> -->
+</div>
+<div class="q" data-q="lq3">
+<div class="q-head">
+<div class="q-num">3</div>
+<div class="q-text">Does the guest need anything extra?</div>
+</div>
+<label class="opt"><input name="lq3" type="radio" value="a"/> An extra breakfast.</label>
+<label class="opt"><input name="lq3" type="radio" value="b"/> An extra bed.</label>
+<label class="opt"><input name="lq3" type="radio" value="c"/> An extra room.</label>
+<!-- <div class="q-hint">Choose one answer.</div> -->
+</div>
+<div class="quiz-actions">
+<button class="btn btn-primary li-btn" type="submit">Submit</button>
+<button class="btn" id="liResetBtn" type="button">Reset</button>
+<span aria-live="polite" class="status" id="liFeedback" role="status"></span>
+</div>
 
-              <div class="choices" id="choices"></div>
 
-              <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+</form>
+</div>
 
-              <button class="btn btn-square btn-accent" id="continueBtn" type="button">Continue</button>
-            </div>
+</div>
+</section>
+<!-- TAB 5 -->
+<section class="tab-panel" data-panel="revision" hidden="" id="tabRevision">
+<div class="kw-wrap">
+<div class="kw-card" data-theme="green">
+<div class="kw-head">
+<div aria-hidden="true" class="kw-icon">
+<img alt="" src="img/arrows.png"/>
+</div>
+<div class="kw-title">IV. Language Revision</div>
+</div>
+<div class="kw-body">
+<div aria-label="Language revision" class="rev-box" role="region">
+<div class="rev-text">
+<div class="rev-subtitle"><strong>Present Simple (Be + Other Verbs for Habits)</strong></div>
+<div class="rev-block">
+<div class="rev-line"><strong>Positive:</strong> I eat breakfast. They study English.</div>
+<div class="rev-line"><strong>Negative:</strong> I do not (don’t) eat meat. He does not (doesn’t) like onions.</div>
+<div class="rev-line"><strong>Question:</strong> Do you speak English? Does she live here?</div>
+<div class="rev-line"><strong>Third-person -s/-es:</strong> loves, goes, does, has, etc.</div>
+</div>
+<div class="rev-subtitle"><strong>LANGUAGE FUNCTIONS</strong></div>
+<div class="rev-block">
+<div class="rev-line">Describing daily routines and preferences, e.g.</div>
+<div class="rev-quote">“Do you go to work at 8 a.m.? Yes, I do, but Anna doesn’t start till 10:00 a.m.”</div>
+<div class="rev-quote">“We eat lunch at 2:00 p.m.”</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="tab-panel" data-panel="practice" hidden="" id="tabPractice">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon">
+<img alt="" src="img/target.png"/>
+</div>
+<h1 class="unit-title">V. Language Practice</h1>
+</div>
+</div>
+<div class="exercise-shell">
+<!-- <div class="exercise-left"> -->
+<div aria-label="Language practice" class="practice-card" role="region">
+<div class="practice-instructions">
+<div class="practice-instr-title">INSTRUCTIONS:</div>
+<div class="practice-instr-text">Choose the correct word to fill the gaps in the text below.</div>
+</div>
+<div aria-label="Word bank" class="practice-bank">
+<div class="token" data-word="She" draggable="true" tabindex="0">She</div>
+<div class="token" data-word="flies" draggable="true" tabindex="0">flies</div>
+<div class="token" data-word="likes" draggable="true" tabindex="0">likes</div>
+<div class="token" data-word="Do" draggable="true" tabindex="0">Do</div>
+<div class="token" data-word="doesn't like" draggable="true" tabindex="0">doesn't like</div>
+</div>
+<ol class="practice-qs">
+<li>He <span aria-label="Blank 1" class="blank" data-answer="doesn't like" tabindex="0"></span> tomatoes.</li>
+<br/>
+<br/>
+<li><span aria-label="Blank 2" class="blank" data-answer="She" tabindex="0"></span> is a vegan.</li>
+<br/>
+<br/>
+<li>Anna <span aria-label="Blank 3" class="blank" data-answer="likes" tabindex="0"></span> to read thrillers.</li>
+<br/><br/>
+<li><span aria-label="Blank 4" class="blank" data-answer="Do" tabindex="0"></span> they travel to Sardinia every year?</li>
+<br/><br/>
+<li>He <span aria-label="Blank 5" class="blank" data-answer="flies" tabindex="0"></span> to Chania every weekend.</li>
+</ol>
+<div class="practice-actions">
+<button class="btn" id="practiceCheck" type="button">Check</button>
+<button class="btn ghost" id="practiceReset" type="button">Reset</button>
+<div aria-live="polite" class="practice-feedback" id="practiceFeedback"></div>
+</div>
+</div>
+<!-- </div> -->
+</div>
+</section>
+<!-- TAB 6 -->
+<section class="tab-panel" data-panel="reading" hidden="" id="tabReading">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon unit-icon--burgundy">
+<img alt="" src="img/reading.png"/>
+</div>
+<h1 class="unit-title">VI. Reading</h1>
+</div>
+</div>
+<div class="exercise-shell">
+<div class="exercise-left">
+<div aria-label="Reading keywords" class="reading-keywords" role="region">
+<div class="reading-kw-head">KEY WORDS:</div>
+<div class="reading-kw-list">
+<button aria-label="Hear pronunciation: departure" class="speak-btn" data-word="departure" type="button">
+<span class="kw-word">departure</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+<button aria-label="Hear pronunciation: excursion" class="speak-btn" data-word="excursion" type="button">
+<span class="kw-word">excursion</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+<button aria-label="Hear pronunciation: suggest" class="speak-btn" data-word="suggest" type="button">
+<span class="kw-word">suggest</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+<button aria-label="Hear pronunciation: port" class="speak-btn" data-word="port" type="button">
+<span class="kw-word">port</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+<button aria-label="Hear pronunciation: include" class="speak-btn" data-word="include" type="button">
+<span class="kw-word">include</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+<button aria-label="Hear pronunciation: transportation" class="speak-btn" data-word="transportation" type="button">
+<span class="kw-word">transportation</span>
+<span aria-hidden="true" class="speak-ico">🔊</span>
+</button>
+</div>
+</div>
+<aside aria-label="Instructions" class="exercise-right">
+<div class="sticky-card sticky-card--burgundy">
+<div class="card-title">INSTRUCTIONS:</div>
+<p class="card-p">Search online for each one of the key words to find their meaning.</p>
+<p class="card-p">Click the speaker icon (🔊) to confirm its pronunciation.</p>
+</div>
+</aside>
+<br/>
+<div aria-label="Reading activity" class="reading-card" role="region">
+<div class="reading-section-title">READING TEXT</div>
+<div class="reading-instr-inline"><strong>INSTRUCTIONS:</strong> Read the text below and answer the questions.</div>
+<div class="reading-text">
+<div class="reading-text-title">Crete Excursion Quick Guide</div>
+<div class="reading-text-body">
+            “A suggested excursion: Balos Beach. Departure 08:30 from the port. Return 16:00. Cost: 40 euros per person. Includes transportation and lunch.”
           </div>
-        </aside>
-      </section>
-    </main>
+</div>
+<div class="reading-section-title">QUESTIONS</div>
+<form aria-label="Reading questions" class="quiz-form" id="readingForm">
+<div class="q" data-q="r1">
+<div class="q-head">
+<div class="q-num">1</div>
+<div class="q-text">What time does the bus leave?</div>
+</div>
+<div aria-label="Question 1 options" class="opts" role="radiogroup">
+<label class="opt"><input name="r1" type="radio" value="a"/> At 07:00 am.</label>
+<label class="opt"><input name="r1" type="radio" value="b"/> At noon.</label>
+<label class="opt"><input name="r1" type="radio" value="c"/> At 08:30 am.</label>
+</div>
+</div>
+<div class="q" data-q="r2">
+<div class="q-head">
+<div class="q-num">2</div>
+<div class="q-text">How much does the excursion cost?</div>
+</div>
+<div aria-label="Question 2 options" class="opts" role="radiogroup">
+<label class="opt"><input name="r2" type="radio" value="a"/> 40 euros per group.</label>
+<label class="opt"><input name="r2" type="radio" value="b"/> 50 euros per person.</label>
+<label class="opt"><input name="r2" type="radio" value="c"/> 40 euros per person.</label>
+</div>
+</div>
+<div class="q" data-q="r3">
+<div class="q-head">
+<div class="q-num">3</div>
+<div class="q-text">Where does the bus leave from?</div>
+</div>
+<div aria-label="Question 3 options" class="opts" role="radiogroup">
+<label class="opt"><input name="r3" type="radio" value="a"/> From the hotel.</label>
+<label class="opt"><input name="r3" type="radio" value="b"/> From the town square.</label>
+<label class="opt"><input name="r3" type="radio" value="c"/> From the port.</label>
+</div>
+</div>
+<div class="actions">
+<button class="btn primary btn-burgundy" type="submit">Check</button>
+<button class="btn" id="readingReset" type="button">Reset</button>
+</div>
+<div aria-live="polite" class="feedback" id="readingFeedback"></div>
+</form>
+</div>
+</div>
+
+</div>
+</section>
+<section class="tab-panel" data-panel="speaking" hidden="" id="tabSpeaking">
+<div class="kw-wrap">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon unit-icon--burgundy">
+<img alt="" src="img/speaking.png"/>
+</div>
+<h1 class="unit-title">VII. Speaking - Basic Tourism Phrases</h1>
+</div>
+</div>
+<div class="kw-card speaking-card" data-theme="green">
+<div class="kw-body">
+<div aria-label="Sample phrases" class="speaking-phrases">
+<div class="speaking-phrase">"I want to book..."</div>
+<div class="speaking-phrase">"How much is...?"</div>
+<div class="speaking-phrase">"Where is the...?"</div>
+<div class="speaking-phrase">"Can you help me?"</div>
+</div>
+<div aria-label="Speaking instructions" class="kw-instructions" role="region">
+<div class="kw-instr-title">INSTRUCTIONS:</div>
+<div class="kw-instr-text">
+            Create short A-B dialogues. Match the sentences from column A to the sentences from column B.
+            <br/><br/>
+<strong>EXAMPLE:</strong><br/>
+            A: How much is this bottle of wine? (1)<br/>
+            B: 15 euros. (c)<br/>
+<em>The correct answer is: 1c.</em>
+</div>
+</div>
+<div class="speaking-match">
+<div aria-label="Speaking matching" class="practice-card practice-card--green" role="region">
+<div aria-label="Column B (drag these sentences)" class="practice-bank speaking-bank">
+<div class="token" data-word="a" draggable="true" tabindex="0">A pleasure.</div>
+<div class="token" data-word="b" draggable="true" tabindex="0">On the first floor.</div>
+<div class="token" data-word="c" draggable="true" tabindex="0">15 euros. (Ex.)</div>
+<div class="token" data-word="d" draggable="true" tabindex="0">Yes, of course, what can I do for you?</div>
+<div class="token" data-word="e" draggable="true" tabindex="0">It's one block up this street.</div>
+<div class="token" data-word="f" draggable="true" tabindex="0">Is it for tonight?</div>
+</div>
+<ol aria-label="Column A (drop in the gaps)" class="practice-qs speaking-qs">
+<li>How much is this bottle of wine? (Ex.) <span aria-label="Blank 1" class="blank" data-answer="c" tabindex="0"></span></li>
+<li>Can you help me? <span aria-label="Blank 2" class="blank" data-answer="d" tabindex="0"></span></li>
+<li>Where is the breakfast room? <span aria-label="Blank 3" class="blank" data-answer="b" tabindex="0"></span></li>
+<li>I want to book a single room. <span aria-label="Blank 4" class="blank" data-answer="f" tabindex="0"></span></li>
+<li>Thank you. <span aria-label="Blank 5" class="blank" data-answer="a" tabindex="0"></span></li>
+<li>Where is the bus stop, please? <span aria-label="Blank 6" class="blank" data-answer="e" tabindex="0"></span></li>
+</ol>
+</div>
+<div class="practice-actions">
+<button class="btn" id="speakingCheck" type="button">Check</button>
+<button class="btn btn-ghost" id="speakingReset" type="button">Reset</button>
+<div aria-live="polite" class="practice-feedback" id="speakingFeedback" role="status"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TAB HOUR 2 - I. Useful Language -->
+<section class="tab-panel" data-panel="h2_exercise" hidden="" id="tabHour2Exercise">
+<div class="page-title">
+<!-- <div class="week-chip">Module 2 - Second Hour</div> -->
+</div>
+<div class="kw-wrap">
+<div class="kw-card" data-theme="purple">
+<div class="kw-head">
+<div aria-hidden="true" class="kw-icon">
+<img alt="" src="img/bubbles.png"/>
+</div>
+<div class="kw-title">I. Useful Language</div>
+</div>
+<div class="kw-body">
+<p class="ul-quote">
+<em>"How can I help you?"  "We’d like to book a table for a party of 6."  "We’ll order..."  "Can I have your name to confirm the booking?"  "Do you have a preferred date?"  "All set."</em>
+</p>
+</div>
+</div>
+</div>
+</section><section class="tab-panel" data-panel="h2_keywords" hidden="" id="tabHour2Keywords">
+<div class="kw-wrap">
+<div class="page-title">
+<!-- <div class="week-chip">Week 1, First Hour</div> -->
+<div class="unit-head">
+<div aria-hidden="true" class="unit-icon unit-icon--burgundy">
+<img alt="" src="img/icon-key.png"/>
+</div>
+<h1 class="unit-title">II. Key Words</h1>
+</div>
+</div>
+<div class="kw-card" data-theme="blue">
+
+
+<div class="kw-body">
+<div aria-label="Key words instructions" class="kw-instructions" role="region">
+<div class="kw-instr-title">INSTRUCTIONS:</div>
+<div class="kw-instr-text">
+            Choose the correct phrase to fill the gaps in the text below.
+          </div>
+
+
+</div>
+<div class="speaking-match">
+<div aria-label="Key words matching" class="practice-card practice-card--blue" role="region">
+<div aria-label="Definitions (drag these)" class="practice-bank h2kw-bank">
+<div class="token" data-word="A" draggable="true" tabindex="0">Reserving in advance.</div>
+<div class="token" data-word="B" draggable="true" tabindex="0">Pre-set dishes.</div>
+<div class="token" data-word="C" draggable="true" tabindex="0">Available choices.</div>
+<div class="token" data-word="D" draggable="true" tabindex="0">Many choices.</div>
+<div class="token" data-word="E" draggable="true" tabindex="0">Special food requirements.</div>
+<div class="token" data-word="F" draggable="true" tabindex="0">Verify or approve.</div>
+</div>
+<ol aria-label="Key words (drop in the gaps)" class="practice-qs h2kw-qs">
+<li>Dietary needs <span aria-label="Blank 1" class="blank" data-answer="E" tabindex="0"></span></li><br>
+<li>Options <span aria-label="Blank 2" class="blank" data-answer="C" tabindex="0"></span></li><br>
+<li>A fixed menu <span aria-label="Blank 3" class="blank" data-answer="B" tabindex="0"></span></li><br>
+<li>Variety <span aria-label="Blank 4" class="blank" data-answer="D" tabindex="0"></span></li><br>
+<li>Confirm <span aria-label="Blank 5" class="blank" data-answer="F" tabindex="0"></span></li><br>
+<li>Booking <span aria-label="Blank 6" class="blank" data-answer="A" tabindex="0"></span></li>
+</ol>
+</div>
+<div class="practice-actions">
+<button class="btn" id="h2kwCheck" type="button">Check</button>
+<button class="btn btn-ghost" id="h2kwReset" type="button">Reset</button>
+<div aria-live="polite" class="practice-feedback" id="h2kwFeedback" role="status"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<!-- Second Hour: III. Listening -->
+<section class="tab-panel" data-panel="h2_listening" hidden="" id="tabHour2Listening">
+  <div class="page-title">
+    <div class="unit-head">
+      <div aria-hidden="true" class="unit-icon unit-icon--purple">
+        <img alt="" src="img/icon-headphones.svg"/>
+      </div>
+      <h1 class="unit-title">III. Listening</h1>
+    </div>
   </div>
 
-  <script src="assets/js/state.js"></script>
-  <script src="assets/js/app.js"></script>
+  <div class="exercise-shell">
+    <div class="exercise-left">
+      <aside aria-label="Instructions" class="exercise-right">
+        <div class="sticky-card sticky-card--purple">
+          <div class="card-title">INSTRUCTIONS</div>
+          <ul class="card-ul">
+            <li>Listen to a dialogue between a receptionist and a hotel guest.</li>
+            <li>First, look at Questions 1 to 3. Then, play the recording ONCE.</li>
+            <li>Play the recording again, and answer the Questions.</li>
+            <li>Then, listen to the dialogue a third time, and check your answers.</li>
+            <li>Now, click the button below for the correct answers.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <br/>
+
+      <div class="card audio-card li-audio">
+        <div class="audio-wrap">
+          <div aria-hidden="true" class="audio-badge">AUDIO</div>
+          <div>
+            <div class="audio-title">Listening</div>
+            <div class="audio-subtitle">Play the recording and answer the questions.</div>
+            <div class="btn-row">
+              <button class="btn" id="h2liPlayBtn" type="button">Play</button>
+              <button class="btn" id="h2liPauseBtn" type="button">Pause</button>
+              <button class="btn" id="h2liRestartBtn" type="button">Restart</button>
+              <span aria-live="polite" class="status" id="h2liAudioStatus" role="status">Ready</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" id="h2liProgressBar" style="width:0%"></div>
+            </div>
+            <audio id="h2ListeningAudio" preload="auto">
+              <source src="sound/mod2_listening_second_hour.mp3" type="audio/mpeg"/>
+            </audio>
+          </div>
+        </div>
+      </div>
+
+      <div class="questions-head">QUESTIONS:</div>
+      <form aria-label="Second hour listening multiple choice questions" class="quiz li-quiz" id="h2ListeningForm">
+        <div class="q" data-q="h2lq1">
+          <div class="q-head">
+            <div class="q-num">1</div>
+            <div class="q-text">What is the tourist requesting at the restaurant?</div>
+          </div>
+          <label class="opt"><input name="h2lq1" type="radio" value="a"/> A table for 4 and a quiet corner.</label>
+          <label class="opt"><input name="h2lq1" type="radio" value="b"/> A table for 6 and good food.</label>
+          <label class="opt"><input name="h2lq1" type="radio" value="c"/> A take-away order.</label>
+        </div>
+
+        <div class="q" data-q="h2lq2">
+          <div class="q-head">
+            <div class="q-num">2</div>
+            <div class="q-text">What is the price of the double room?</div>
+          </div>
+          <label class="opt"><input name="h2lq2" type="radio" value="a"/> If anyone needs a dessert.</label>
+          <label class="opt"><input name="h2lq2" type="radio" value="b"/> If they want a large wine list.</label>
+          <label class="opt"><input name="h2lq2" type="radio" value="c"/> If there are any dietary needs.</label>
+        </div>
+
+        <div class="q" data-q="h2lq3">
+          <div class="q-head">
+            <div class="q-num">3</div>
+            <div class="q-text">Does the guest need anything extra?</div>
+          </div>
+          <label class="opt"><input name="h2lq3" type="radio" value="a"/> He wants a fixed menu with variety.</label>
+          <label class="opt"><input name="h2lq3" type="radio" value="b"/> He wants to order individual dishes only.</label>
+          <label class="opt"><input name="h2lq3" type="radio" value="c"/> He wants a takeaway menu.</label>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="btn btn-primary li-btn" type="submit">Submit</button>
+          <button class="btn" id="h2liResetBtn" type="button">Reset</button>
+          <span aria-live="polite" class="status" id="h2liFeedback" role="status"></span>
+        </div>
+
+        <div class="answers-row">
+          <button class="btn li-answers-btn" disabled="" id="h2liShowAnswers" type="button">Show correct answers</button>
+        </div>
+
+        <div class="answers-box" hidden="" id="h2liAnswersBox">
+          <div class="answers-title">Correct answers</div>
+          <ol>
+            <li><b>B.</b> A table for 6 and good food.</li>
+            <li><b>C.</b> If there are any dietary needs.</li>
+            <li><b>A.</b> He wants a fixed menu with variety.</li>
+          </ol>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Second Hour: IV. Reading -->
+<section class="tab-panel" data-panel="h2_reading" hidden="" id="tabHour2Reading">
+  <div class="page-title">
+    <div class="unit-head">
+      <div aria-hidden="true" class="unit-icon unit-icon--burgundy">
+        <img alt="" src="img/reading.png"/>
+      </div>
+      <h1 class="unit-title">IV. Reading</h1>
+    </div>
+  </div>
+
+  <div class="exercise-shell">
+    <div class="exercise-left">
+      <div aria-label="Reading keywords" class="reading-keywords" role="region">
+        <div class="reading-kw-head">KEY WORDS:</div>
+        <div class="reading-kw-list">
+          <button aria-label="Hear pronunciation: cancellations" class="speak-btn" data-word="cancellations" type="button">
+            <span class="kw-word">cancellations</span>
+            <span aria-hidden="true" class="speak-ico">🔊</span>
+          </button>
+          <button aria-label="Hear pronunciation: incur" class="speak-btn" data-word="incur" type="button">
+            <span class="kw-word">incur</span>
+            <span aria-hidden="true" class="speak-ico">🔊</span>
+          </button>
+          <button aria-label="Hear pronunciation: charge" class="speak-btn" data-word="charge" type="button">
+            <span class="kw-word">charge</span>
+            <span aria-hidden="true" class="speak-ico">🔊</span>
+          </button>
+          <button aria-label="Hear pronunciation: related costs" class="speak-btn" data-word="related costs" type="button">
+            <span class="kw-word">related costs</span>
+            <span aria-hidden="true" class="speak-ico">🔊</span>
+          </button>
+        </div>
+      </div>
+
+      <aside aria-label="Instructions" class="exercise-right">
+        <div class="sticky-card sticky-card--burgundy">
+          <div class="card-title">INSTRUCTIONS:</div>
+          <p class="card-p">Search online for each one of the key words to find their meaning.</p>
+          <p class="card-p">Click the speaker icon (🔊) to confirm its pronunciation.</p>
+        </div>
+      </aside>
+
+      <br/>
+
+      <div aria-label="Reading activity" class="reading-card" role="region">
+        <div class="reading-section-title">READING TEXT</div>
+        <div class="reading-instr-inline"><strong>INSTRUCTIONS:</strong> Now, read the text below and answer the questions.</div>
+
+        <div class="reading-text">
+          <div class="reading-text-title">Hotel Policy Update</div>
+          <div class="reading-text-body">
+            “Cancellations up to 24 hours before arrival incur no charge.<br/>
+            Cancellations within 24 hours incur the first night's charge.<br/>
+            Please confirm the reservation and related costs.”
+          </div>
+        </div>
+
+        <div class="reading-section-title">QUESTIONS</div>
+        <form aria-label="Second hour reading questions" class="quiz-form" id="h2ReadingForm">
+          <div class="q" data-q="h2r1">
+            <div class="q-head">
+              <div class="q-num">1</div>
+              <div class="q-text">If a guest cancels 30 hours before arrival, what is the charge?</div>
+            </div>
+            <div aria-label="Question 1 options" class="opts" role="radiogroup">
+              <label class="opt"><input name="h2r1" type="radio" value="a"/> No charge.</label>
+              <label class="opt"><input name="h2r1" type="radio" value="b"/> First night's charge.</label>
+              <label class="opt"><input name="h2r1" type="radio" value="c"/> Half of the total reservation.</label>
+            </div>
+          </div>
+
+          <div class="q" data-q="h2r2">
+            <div class="q-head">
+              <div class="q-num">2</div>
+              <div class="q-text">What happens if a guest cancels within 24 hours of arrival?</div>
+            </div>
+            <div aria-label="Question 2 options" class="opts" role="radiogroup">
+              <label class="opt"><input name="h2r2" type="radio" value="a"/> No charge.</label>
+              <label class="opt"><input name="h2r2" type="radio" value="b"/> First night's charge.</label>
+              <label class="opt"><input name="h2r2" type="radio" value="c"/> Full reservation charge.</label>
+            </div>
+          </div>
+
+          <div class="q" data-q="h2r3">
+            <div class="q-head">
+              <div class="q-num">3</div>
+              <div class="q-text">What action is requested regarding the reservation and costs?</div>
+            </div>
+            <div aria-label="Question 3 options" class="opts" role="radiogroup">
+              <label class="opt"><input name="h2r3" type="radio" value="a"/> Confirm the reservation and related costs.</label>
+              <label class="opt"><input name="h2r3" type="radio" value="b"/> Cancel the reservation.</label>
+              <label class="opt"><input name="h2r3" type="radio" value="c"/> Request a refund for the booking fee.</label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary btn-burgundy" type="submit">Check</button>
+            <button class="btn" id="h2ReadingReset" type="button">Reset</button>
+          </div>
+          <div aria-live="polite" class="feedback" id="h2ReadingFeedback"></div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- Second Hour: V. Writing -->
+<section class="tab-panel" data-panel="h2_writing" hidden="" id="tabHour2Writing">
+  <div class="page-title">
+    <div class="unit-head">
+      <div aria-hidden="true" class="unit-icon unit-icon--green">
+        <img alt="" src="img/pencil.png"/>
+      </div>
+      <h1 class="unit-title">V. Writing</h1>
+    </div>
+  </div>
+
+  <div class="exercise-shell">
+    <div class="exercise-left">
+      <div class="writing-card" role="region" aria-label="Writing tasks">
+
+        <div class="writing-task">
+          <div class="writing-task-head">TASK ONE</div>
+          <div class="writing-instructions">
+            <div class="writing-instr-title">INSTRUCTIONS:</div>
+            <div class="writing-instr-text">Choose the correct word to fill the gaps in the text below. You will use ONLY FOUR of the words.</div>
+          </div>
+
+          <div class="writing-bank-wrap">
+            <div class="practice-bank writing-bank" id="h2wBank" aria-label="Word bank" role="list">
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="prices">prices</span>
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="book">book</span>
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="beginning">beginning</span>
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="reservations">reservations</span>
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="rates">rates</span>
+              <span class="token" draggable="true" tabindex="0" role="listitem" data-word="availability">availability</span>
+            </div>
+          </div>
+
+          <div class="writing-gap-text" aria-label="Gap fill text">
+            During the summer, hotel room <span class="blank" tabindex="0" role="button" aria-label="Blank 1" data-answer="rates"></span> are quite low,
+            because many tourists book their <span class="blank" tabindex="0" role="button" aria-label="Blank 2" data-answer="reservations"></span> as early as the
+            <span class="blank" tabindex="0" role="button" aria-label="Blank 3" data-answer="beginning"></span> of the year. Hotel
+            <span class="blank" tabindex="0" role="button" aria-label="Blank 4" data-answer="prices"></span> are 50% lower in January than in May or June.
+          </div>
+
+          <div class="actions">
+            <button class="btn primary btn-green" id="h2wCheck" type="button">Check</button>
+            <button class="btn" id="h2wReset" type="button">Reset</button>
+          </div>
+          <div aria-live="polite" class="feedback" id="h2wFeedback"></div>
+        </div>
+
+        <div class="writing-task">
+          <div class="writing-task-head">TASK TWO</div>
+          <div class="writing-instructions">
+            <div class="writing-instr-title">INSTRUCTIONS:</div>
+            <div class="writing-instr-text">Write a 50-word email to a hotel in Rethymno, Crete, requesting family room and breakfast rates. Include the dates you plan to be in Rethymno and the number of days you will need the room.</div>
+          </div>
+
+          <div class="writing-compose">
+            <div class="writing-meta">
+              <div class="wordcount" id="h2EmailCount" aria-live="polite">Words: 0/50</div>
+              <div class="hint">Tip: include dates, number of days, family room, breakfast rates, Rethymno, Crete.</div>
+            </div>
+            <textarea class="writing-textarea" id="h2EmailText" rows="7" placeholder="Write your email here..." aria-label="Email text (max 50 words)"></textarea>
+
+            <div class="actions">
+              <button class="btn primary btn-green" id="h2EmailCheck" type="button">Check and score</button>
+              <button class="btn" id="h2EmailReset" type="button">Clear</button>
+            </div>
+
+            <div class="writing-score" id="h2EmailScore" aria-live="polite"></div>
+            <div class="writing-feedback" id="h2EmailFeedback" aria-live="polite"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section class="tab-panel" data-panel="h2_recall" hidden="" id="tabHour2Recall">
+  <div class="kw-wrap">
+    <div class="kw-card" data-theme="brown">
+      <div class="kw-head">
+        <div aria-hidden="true" class="kw-icon">
+          <img alt="" src="img/arrows.png"/>
+        </div>
+        <div class="kw-title">VI. Learning Recal<br><span class="kw-title-small">(optional)</span></div>
+      </div>
+      <div class="kw-body">
+        <div aria-label="Learning recall" class="rev-box" role="region">
+          <div class="rev-text">Take 2-3 minutes to reflect and to write down in your notebook 4-5 points or words you learnt or reviewed in Module 2.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+</main>
+</div>
+<!-- CREDITS MODAL -->
+<div aria-hidden="true" aria-labelledby="creditsTitle" class="modal" id="creditsModal" role="dialog">
+<div class="modal-backdrop" data-close="true"></div>
+<div class="modal-card" role="document">
+<div class="modal-head">
+<h2 id="creditsTitle">Credits</h2>
+<button aria-label="Close credits" class="icon-btn close" id="closeCredits" type="button">×</button>
+</div>
+<div class="modal-body">
+<p><strong>Page:</strong> Module 2 (tabs demo)</p>
+<p><strong>Audio:</strong> placeholder MP3 generated for testing</p>
+<p><strong>Offline:</strong> works locally without external libraries</p>
+</div>
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/h2_writing.js"></script>
 </body>
 </html>

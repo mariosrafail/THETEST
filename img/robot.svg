@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260" role="img" aria-label="Robot">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#7a67c9" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#5f4aa7" stop-opacity=".12"/>
+    </linearGradient>
+  </defs>
+  <rect x="38" y="54" width="184" height="150" rx="28" fill="url(#g)" stroke="#cdbfe8" stroke-width="4"/>
+  <rect x="64" y="84" width="132" height="72" rx="20" fill="#ffffff" stroke="#cdbfe8" stroke-width="4"/>
+  <circle cx="104" cy="120" r="10" fill="#5f4aa7"/>
+  <circle cx="156" cy="120" r="10" fill="#5f4aa7"/>
+  <rect x="106" y="148" width="48" height="12" rx="6" fill="#d9cff3" stroke="#cdbfe8" stroke-width="3"/>
+  <rect x="92" y="204" width="76" height="18" rx="9" fill="#ffffff" stroke="#cdbfe8" stroke-width="4"/>
+  <rect x="120" y="26" width="20" height="30" rx="10" fill="#ffffff" stroke="#cdbfe8" stroke-width="4"/>
+  <circle cx="130" cy="24" r="10" fill="#fff4a8" stroke="#cdbfe8" stroke-width="4"/>
+  <path d="M48 170c-10 0-18-8-18-18s8-18 18-18" fill="none" stroke="#cdbfe8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M212 170c10 0 18-8 18-18s-8-18-18-18" fill="none" stroke="#cdbfe8" stroke-width="6" stroke-linecap="round"/>
+</svg>

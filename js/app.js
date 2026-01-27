@@ -10,10 +10,19 @@
       b.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
+    // Hide all panels first
     panels.forEach((p) => {
-      const show = p.dataset.panel === key;
-      p.hidden = !show;
+      p.classList.remove('is-visible');
+      p.hidden = true;
     });
+
+    // Show target panel with a small enter animation
+    const target = panels.find((p) => p.dataset.panel === key);
+    if (target){
+      target.hidden = false;
+      // Force a frame so CSS transitions can kick in
+      requestAnimationFrame(() => target.classList.add('is-visible'));
+    }
 
     // Scroll to top of content when switching tabs
     try{
@@ -25,6 +34,26 @@
   tabButtons.forEach((btn) => {
     btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
   });
+
+  // Initial state
+  const initiallyActive = tabButtons.find((b) => b.classList.contains('is-active'))?.dataset.tab || 'info';
+  setActiveTab(initiallyActive);
+
+  // Hover highlight position for buttons and tabs
+  function updateRadialVars(el, clientX, clientY){
+    const r = el.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * 100;
+    const y = Math.max(0, Math.min(1, (clientY - r.top) / r.height)) * 100;
+    el.style.setProperty('--rx', x.toFixed(2) + '%');
+    el.style.setProperty('--ry', y.toFixed(2) + '%');
+  }
+
+  const hotspotSel = '.btn, .tab-btn, .kw-reveal, .dd-token, .dd-dropzone, .tiny-btn';
+  document.addEventListener('pointermove', (e) => {
+    const el = e.target?.closest?.(hotspotSel);
+    if (!el) return;
+    updateRadialVars(el, e.clientX, e.clientY);
+  }, { passive: true });
 
   // Audio (bind multiple players safely)
   function bindAudioPlayer(cfg){

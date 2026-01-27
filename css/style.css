@@ -48,6 +48,21 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 
+/* Accessibility and motion preferences */
+:focus-visible{
+  outline: 3px solid rgba(122,103,201,.45);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .topbar{
   position: sticky;
   top: 0;
@@ -252,9 +267,33 @@ h1{
   font-weight: 800;
   cursor:pointer;
   box-shadow: 0 10px 24px rgba(30,18,60,.08);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
 }
-.btn:hover{background:#fff}
+.btn:hover{
+  background:#fff;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(30,18,60,.10);
+}
+.btn:active{
+  transform: translateY(0);
+  box-shadow: 0 10px 24px rgba(30,18,60,.08);
+}
 .btn:disabled{opacity:.55; cursor:not-allowed}
+
+/* subtle ripple highlight */
+.btn::after{
+  content:"";
+  position:absolute;
+  inset: -20px;
+  background: radial-gradient(circle at var(--rx, 50%) var(--ry, 50%), rgba(122,103,201,.18), transparent 45%);
+  opacity: 0;
+  transition: opacity .18s ease;
+  pointer-events:none;
+}
+.btn:hover::after{opacity: 1}
 
 .btn.primary{
   border-color: rgba(122,103,201,.55);
@@ -315,9 +354,65 @@ h1{
   border: 1px solid rgba(205,191,232,.8);
   background: rgba(255,255,255,.72);
   cursor:pointer;
+  position: relative;
+  padding-left: 44px;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
 }
-.opt:hover{background:#fff}
+.opt:hover{background:#fff; transform: translateY(-1px); box-shadow: 0 12px 26px rgba(30,18,60,.08)}
+.opt:active{transform: translateY(0); box-shadow: none}
+
+/* Input visuals: keep native as fallback, enhance with :has(...) when supported */
 .opt input{margin-top: 2px; accent-color: var(--purple-600)}
+
+.opt::before{
+  content:"";
+  position:absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(122,103,201,.45);
+  background: rgba(255,255,255,.85);
+  transform: translateY(-50%);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  box-shadow: 0 0 0 4px rgba(122,103,201,.08);
+}
+.opt::after{
+  content:"";
+  position:absolute;
+  left: 19px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(122,103,201,.85);
+  transform: translateY(-50%) scale(0);
+  transition: transform .18s ease;
+}
+
+@supports selector(:has(*)){
+  .opt input{
+    position:absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events:none;
+  }
+
+  .opt:has(input:checked)::before{
+    background: rgba(122,103,201,.14);
+    border-color: rgba(122,103,201,.65);
+    box-shadow: 0 0 0 6px rgba(122,103,201,.10);
+  }
+  .opt:has(input:checked)::after{
+    transform: translateY(-50%) scale(1);
+  }
+  .opt:has(input:focus-visible){
+    box-shadow: 0 0 0 4px rgba(122,103,201,.18);
+  }
+}
 
 .q-hint{
   margin-top: 10px;
@@ -345,13 +440,15 @@ h1{
   font-weight: 900;
   display:none;
 }
-.feedback.ok{
+.feedback.ok,
+.feedback.is-good{
   display:block;
   border-color: rgba(31,122,76,.32);
   background: rgba(31,122,76,.10);
   color: var(--ok);
 }
-.feedback.bad{
+.feedback.bad,
+.feedback.is-bad{
   display:block;
   border-color: rgba(180,35,24,.32);
   background: rgba(180,35,24,.10);
@@ -470,13 +567,33 @@ h1{
   color: var(--ink);
   text-align:left;
   cursor:pointer;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  position: relative;
+  overflow:hidden;
+  transform: translateY(0);
+  transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
 }
 
 .tab-btn:hover{
   transform: translateY(-1px);
   background: rgba(122,103,201,.14);
+  box-shadow: 0 10px 22px rgba(30,18,60,.08);
 }
+
+.tab-btn:active{
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.tab-btn::after{
+  content:"";
+  position:absolute;
+  inset: -30px;
+  background: radial-gradient(circle at var(--rx, 50%) var(--ry, 50%), rgba(255,255,255,.55), transparent 45%);
+  opacity:0;
+  transition: opacity .18s ease;
+  pointer-events:none;
+}
+.tab-btn:hover::after{opacity:.75}
 
 .tab-btn.is-active{
   background: linear-gradient(180deg, rgba(122,103,201,.24), rgba(122,103,201,.10));
@@ -490,6 +607,19 @@ h1{
   background: var(--purple-600);
   box-shadow: 0 0 0 4px rgba(122,103,201,.14);
   flex:0 0 12px;
+}
+
+@keyframes pulseDot{
+  0%{transform: scale(1); box-shadow: 0 0 0 4px rgba(122,103,201,.14);
+  }
+  60%{transform: scale(1.08); box-shadow: 0 0 0 8px rgba(122,103,201,.10);
+  }
+  100%{transform: scale(1); box-shadow: 0 0 0 4px rgba(122,103,201,.14);
+  }
+}
+
+.tab-btn.is-active .tab-dot{
+  animation: pulseDot 1.4s ease-in-out infinite;
 }
 
 .tab-btn[data-tab="keywords"]{background: rgba(111,143,203,.10);}
@@ -635,7 +765,7 @@ h1{
   display:flex;
   justify-content:flex-end;
   padding-top:14px;
-
+}
 
 .tab-divider{
   margin: 10px 10px 6px 10px;
@@ -652,7 +782,7 @@ h1{
   letter-spacing: .6px;
   text-transform: uppercase;
   color: rgba(95,74,167,.92);
-}}
+}
 
 .content{
   flex:1 1 auto;
@@ -660,6 +790,16 @@ h1{
 }
 
 /* Panels */
+.tab-panel{
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .22s ease, transform .22s ease;
+  will-change: opacity, transform;
+}
+.tab-panel.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
 .tab-panel[hidden]{display:none;}
 
 /* ---------- Tab 1 (Module Focus) ---------- */
@@ -1059,9 +1199,24 @@ h1{
   font-weight: 900;
   cursor: pointer;
   color: rgba(47,79,138,.95);
+  position: relative;
+  overflow:hidden;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
 }
 
-.kw-reveal:hover{background:#fff}
+.kw-reveal:hover{background:#fff; transform: translateY(-1px); box-shadow: 0 12px 26px rgba(30,18,60,.08)}
+.kw-reveal:active{transform: translateY(0); box-shadow:none}
+
+.kw-reveal::after{
+  content:"";
+  position:absolute;
+  inset: -24px;
+  background: radial-gradient(circle at var(--rx, 50%) var(--ry, 50%), rgba(111,143,203,.28), transparent 45%);
+  opacity:0;
+  transition: opacity .18s ease;
+  pointer-events:none;
+}
+.kw-reveal:hover::after{opacity:.9}
 
 .kw-meaning{
   margin-top: 8px;

@@ -1,3 +1,6 @@
+/* Global Comic Sans override */
+* { font-family: "Comic Sans MS", "Comic Sans", cursive !important; }
+
 /* Module 2 - Useful Language
    Offline friendly, no external fonts or libraries.
 */
@@ -1886,3 +1889,174 @@ h1{
   color: #fff;
 }
 .kw-card[data-theme="blue"] .kw-title{color:#fff;}
+
+/* ====== Extreme UX Animations (keeps existing colors) ====== */
+:root{
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 380ms;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-inout: cubic-bezier(.4,0,.2,1);
+  --shadow-1: 0 8px 18px rgba(0,0,0,.14);
+  --shadow-2: 0 14px 30px rgba(0,0,0,.18);
+  --shadow-3: 0 22px 44px rgba(0,0,0,.20);
+}
+
+/* Smooth transitions everywhere (no color changes) */
+*{
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    filter var(--dur-2) var(--ease-out),
+    opacity var(--dur-2) var(--ease-out),
+    border-radius var(--dur-2) var(--ease-out),
+    letter-spacing var(--dur-2) var(--ease-out);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; animation: none !important; }
+}
+
+/* Keyframes */
+@keyframes floaty {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes pop {
+  0% { transform: scale(.98); opacity:.8; }
+  100% { transform: scale(1); opacity:1; }
+}
+@keyframes glowPulse {
+  0%,100% { filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  50% { filter: drop-shadow(0 10px 18px rgba(0,0,0,.18)); }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-120%); opacity: 0; }
+  15% { opacity: .55; }
+  50% { opacity: .25; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* Cards / containers */
+.card, .panel, .content, .content-box, .box, .section, .module, .exercise, .question, .tab-content, [class*="card"], [class*="panel"], [class*="content"]{
+  animation: pop var(--dur-3) var(--ease-out) both;
+}
+.card:hover, .panel:hover, .content-box:hover, .box:hover, .section:hover, .module:hover, .exercise:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+}
+
+/* Tabs */
+.tabs button, .tabs a, .tab, [role="tab"], .tab-btn, .tab-button, .sidebar button, .sidebar a{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+.tabs button:hover, .tabs a:hover, .tab:hover, [role="tab"]:hover, .tab-btn:hover, .tab-button:hover{
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-1);
+}
+.tabs button:active, .tabs a:active, .tab:active, [role="tab"]:active, .tab-btn:active, .tab-button:active{
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 6px 12px rgba(0,0,0,.12);
+}
+/* Shimmer highlight on hover (doesn't change theme colors) */
+.tabs button::after, .tabs a::after, .tab::after, [role="tab"]::after, .tab-btn::after, .tab-button::after{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:-60%;
+  width:45%;
+  height:160%;
+  background:: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: translateX(-120%);
+  pointer-events:none;
+}
+.tabs button:hover::after, .tabs a:hover::after, .tab:hover::after, [role="tab"]:hover::after, .tab-btn:hover::after, .tab-button:hover::after{
+  animation: shimmer 900ms var(--ease-out) both;
+}
+
+/* Buttons */
+button, .btn, [type="button"], [type="submit"], [role="button"]{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+button:hover, .btn:hover, [type="button"]:hover, [type="submit"]:hover, [role="button"]:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-2);
+}
+button:active, .btn:active, [type="button"]:active, [type="submit"]:active, [role="button"]:active{
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 8px 16px rgba(0,0,0,.14);
+}
+/* Ripple-like highlight (neutral) */
+button::before, .btn::before, [role="button"]::before{
+  content:"";
+  position:absolute;
+  inset:auto;
+  width:10px; height:10px;
+  left:50%; top:50%;
+  transform: translate(-50%,-50%) scale(1);
+  border-radius:999px;
+  background: rgba(255,255,255,.55);
+  opacity:0;
+  pointer-events:none;
+}
+button:active::before, .btn:active::before, [role="button"]:active::before{
+  opacity:.7;
+  transform: translate(-50%,-50%) scale(22);
+  transition: transform 520ms var(--ease-out), opacity 520ms var(--ease-out);
+}
+
+/* Inputs */
+input, textarea, select{
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    filter var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+}
+input:focus, textarea:focus, select:focus{
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 4px rgba(0,0,0,.08), var(--shadow-1);
+  outline: none;
+}
+
+/* Checkboxes + radios */
+input[type="checkbox"], input[type="radio"]{
+  transform: translateZ(0);
+}
+input[type="checkbox"]:hover, input[type="radio"]:hover{
+  transform: scale(1.06);
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.16));
+}
+input[type="checkbox"]:checked, input[type="radio"]:checked{
+  animation: pop 180ms var(--ease-out) both;
+}
+
+/* Drag & drop elements (generic) */
+.draggable, [draggable="true"], .drag-item, .word, .chip, .token, .option{
+  cursor: grab;
+  animation: floaty 3.2s var(--ease-inout) infinite;
+}
+.draggable:active, [draggable="true"]:active, .drag-item:active, .word:active, .chip:active, .token:active, .option:active{
+  cursor: grabbing;
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: var(--shadow-3);
+  animation: glowPulse 560ms var(--ease-out) infinite;
+}
+.dropzone, .drop-zone, .drop-area, .droppable, .blank, .gap, [class*="drop"]{
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), filter var(--dur-2) var(--ease-out);
+}
+.dropzone:hover, .drop-zone:hover, .drop-area:hover, .droppable:hover, .blank:hover, .gap:hover{
+  transform: scale(1.01);
+  box-shadow: var(--shadow-1);
+}
+
+/* Micro interaction for icons/badges */
+.badge, .pill, .tag, .bubble, [class*="badge"], [class*="pill"], [class*="bubble"]{
+  animation: floaty 4s var(--ease-inout) infinite;
+}
+/* ====== End Extreme UX Animations ====== */
